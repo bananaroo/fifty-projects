@@ -17,7 +17,7 @@ async function getMovies(url) {
 }
 
 function showMovies(movies) {
-    MediaDeviceInfo.innerHTML = ''
+    main.innerHTML = ''
 
     movies.forEach((movie) => {
         const { title, poster_path, vote_average, overview } = movie
@@ -26,19 +26,29 @@ function showMovies(movies) {
         movieEl.classList.add('movie')
 
         movieEl.innerHTML = `
-        <div class="movie">
-        <img src="https://source.unsplash.com/evlkOfkQ5rE" alt="">
-        <div class="movie-info">
-            <h3>Movie Title</h3>
-            <span class="green">9.8</span>
-        </div>
-        <div class="overview">
-            <h3>Overview</h3>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore praesentium alias quam quia sint aut delectus explicabo ea suscipit cumque.
-        </div>
-    </div>
+            <img src="${IMG_PATH + poster_path}" alt="${title}">
+            <div class="movie-info">
+                <h3>${title}</h3>
+                <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+             </div>
+            <div class="overview">
+                <h3>Overview</h3>
+                ${overview}
+            </div>
         `
+
+        main.appendChild(movieEl)
     })
+}
+
+function getClassByRate(vote) {
+    if(vote >= 8) {
+        return 'green'
+    } else if (vote >= 5) {
+        return 'orange'
+    } else {
+        return 'red'
+    }
 }
 
 form.addEventListener('submit', (e) => {
