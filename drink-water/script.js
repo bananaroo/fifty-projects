@@ -10,7 +10,8 @@ smallCups.forEach((cup, idx) => {
 })
 
 function highlightCups(idx) {
-    if (smallCups[idx].classList.contains('full') && !smallCups[idx].nextElementSibling.classList.contains('full')) {
+    if (idx===7 && smallCups[idx].classList.contains("full")) idx--;
+    else if(smallCups[idx].classList.contains('full') && !smallCups[idx].nextElementSibling.classList.contains('full')) {
         idx--
     }
 
@@ -29,7 +30,7 @@ function highlightCups(idx) {
 function updateBigCup() {
     const fullCups = document.querySelectorAll('.cup-small.full').length
     const totalCups = smallCups.length
-    
+
     if(fullCups === 0) {
         percentage.style.visibility = 'hidden'
         percentage.style.height = 0
