@@ -38,7 +38,7 @@ function setTime() {
     secondEl.style.transform = `translate(-50%, -100%) rotate(${scale(seconds, 0, 59, 0, 360)}deg)`
 
     timeEl.innerHTML = `${hoursForclock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`
-    dateEl = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
+    dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
 }
 
 // StackOverflow https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
