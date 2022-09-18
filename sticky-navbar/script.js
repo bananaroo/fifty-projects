@@ -8,3 +8,4 @@ function fixNav () {
         nav.classList.remove('active')
     }
 }
+
