@@ -9,34 +9,43 @@ async function getUser(username) {
     try {
         const { data } = await axios(APIURL + username)
     
-        console.log(data)
+        createUserCard(data)
     } catch(err) {
-        console.log(err)
+        if(err.response.status == 404) {
+            creatErrorCard('No profile found')
+        }
     }  
 }
 
 function createUserCard(user) {
     const cardHTML = `<div class="card">
     <div>
-        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="" class="avatar">
+        <img src="${user.avatar_url}" alt="${user.name}" class="avatar">
     </div>
     <div class="user-info">
-        <h2>Jane Doe</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, necessitatibus!</p>
+        <h2>${user.name}</h2>
+        <p>${user.bio}</p>
 
         <ul>
-            <li>300 <strong>followers</strong></li>
-            <li>100 <strong>following</strong></li>
-            <li>30 <strong>repos</strong></li>
+            <li>${user.followers} <strong>followers</strong></li>
+            <li>${user.following} <strong>following</strong></li>
+            <li>${user.public_repos} <strong>repos</strong></li>
         </ul>
 
         <div id="repos">
-            <a href="" class="repo">Repo 1</a>
-            <a href="" class="repo">Repo 2</a>
-            <a href="" class="repo">Repo 3</a>
         </div>
     </div>
 </div>`
+
+    main.innerHTML = cardHTML
+}
+
+function creatErrorCard(msg) {
+    const cardHTML = `
+    <div class="card">
+        <h1>${msg}</h1>
+    </div>
+    `
 
     main.innerHTML = cardHTML
 }
