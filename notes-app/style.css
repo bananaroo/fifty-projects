@@ -17,10 +17,11 @@ body {
     position: fixed;
     top: 1rem;
     right: 1rem;
+    color: #fff;
     background-color: #9ec862;
     border: none;
     border-radius: 3px;
-    padding: o.5rem 1rem;
+    padding: 0.5rem 1rem;
     cursor: pointer;
 }
 
@@ -61,3 +62,4 @@ body {
 .hidden {
     display: none;
 }
+
